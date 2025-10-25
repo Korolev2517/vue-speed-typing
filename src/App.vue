@@ -1,5 +1,6 @@
 <script setup>
 import {ref, onMounted} from "vue";
+import InputAreaComp from './components/InputAreaComp.vue'
 
 const text = ref('');
 const loading = ref(true)
@@ -11,7 +12,7 @@ const fetchText = async () => {
     text.value = data.text;
     console.log(text.value);
   } catch (error) {
-    console.log('Error', error)
+    console.log('Error', error);
   } finally {
     loading.value = false;
   }
@@ -23,14 +24,28 @@ onMounted(() => {
 </script>
 
 <template>
-<div>
-  <p class="text">{{ text }}</p>
+<div class="wrapper">
+  <div class="text-area">
+    <p>{{ text }}</p>
+  </div>
+  <InputAreaComp />
 </div>
 </template>
 
 <style scoped>
-.text {
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}
+.text-area {
+  width: 100%;
+  padding: 5px 10px;
   font-size: 20px;
+  border: 1px solid black;
+  box-sizing: border-box;
 }
 
 </style>
